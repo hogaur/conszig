@@ -1,0 +1,8 @@
+{:ziggurat {:app-name "conszig"
+            :env      "development"
+            :stream-router {:default {:application-id "my-consumer"
+                                      :bootstrap-servers "localhost:9092"
+                                      :origin-topic "test-topic"
+                                      :changelog-topic-replication-factor 1}}
+            :nrepl-server {:port 7011}
+            :http-server  {:port 8010}}}

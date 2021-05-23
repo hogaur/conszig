@@ -1,0 +1,9 @@
+{:deps
+ {tech.gojek/ziggurat {:mvn/version "3.13.0"}
+  mount/mount {:mvn/version "0.1.16"}}
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {io.github.cognitect-labs/test-runner
+                               {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                :sha "d579a19d058993085b9e3ba5247c89f3f3318b47"}}
+                  :main-opts ["-m" "cognitect.test-runner"]
+                  :exec-fn cognitect.test-runner.api/test}}}
