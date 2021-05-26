@@ -12,15 +12,12 @@
 (defn main-fn
   [message]
   (println message)
-  (println "ye yaha kaise aaya")
   :success)
 
 (defn deserialize
   "Accepts a byte array, returns deserialized value"
-  [bytes]
-  (with-open [dis (java.io.ObjectInputStream.
-                   (java.io.ByteArrayInputStream. bytes))]
-    (.readObject dis)))
+  [serialized-message]
+  (String. serialized-message))
 
 (defn wrap-middleware-fn
     [mapper-fn stream-id]
