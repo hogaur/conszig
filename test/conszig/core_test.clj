@@ -3,7 +3,7 @@
             [conszig.core :as core]))
 
 (deftest test-wrap-middleware-fn
-  (testing "wrap-middleware-fn handler-fn deserializes messages before it calls main-fn"
+  (testing "wrap-middleware-fn deserializes messages before it calls main-fn"
     (let [deserialised-message  "message"
           serialised-message (.getBytes deserialised-message)]
       (with-redefs [core/main-fn (fn [message] (is (= deserialised-message message) ) deserialised-message )]

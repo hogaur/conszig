@@ -3,12 +3,6 @@
             [ziggurat.middleware.default :as middleware]
             [mount.core :as mount]))
 
-(defn start-fn []
-  )
-
-(defn stop-fn []
-  )
-
 (defn main-fn
   [message]
   (println message)
@@ -23,9 +17,6 @@
     [mapper-fn stream-id]
     (fn [message]
       (let [deserialised-message (deserialize message)]
-      (println "processing message for stream: " stream-id)
-      (println "the message coming in here is: " message)
-      (println "the deserialized message in here is: " deserialised-message)
       (mapper-fn deserialised-message))))
 
 (def handler-fn
@@ -33,6 +24,6 @@
       (wrap-middleware-fn :default)))
 
 (defn -main []
-  (ziggurat/main {:start-fn start-fn
-                  :stop-fn stop-fn
+  (ziggurat/main {:start-fn #()
+                  :stop-fn #()
                   :stream-routes {:default {:handler-fn handler-fn}}}))
