@@ -9,16 +9,27 @@
 (defn stop-fn []
   )
 
-(defn main-fn [message]
+(defn main-fn
+  [message]
   (println message)
+  (println "ye yaha kaise aaya")
   :success)
+
+(defn deserialize
+  "Accepts a byte array, returns deserialized value"
+  [bytes]
+  (with-open [dis (java.io.ObjectInputStream.
+                   (java.io.ByteArrayInputStream. bytes))]
+    (.readObject dis)))
 
 (defn wrap-middleware-fn
     [mapper-fn stream-id]
     (fn [message]
+      (let [deserialised-message (deserialize message)]
       (println "processing message for stream: " stream-id)
       (println "the message coming in here is: " message)
-      (mapper-fn message)))
+      (println "the deserialized message in here is: " deserialised-message)
+      (mapper-fn deserialised-message))))
 
 (def handler-fn
   (-> main-fn
